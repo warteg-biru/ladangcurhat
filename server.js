@@ -23,6 +23,7 @@ db.once('open', function() {
 // ===========  Includes  =================
 app.use('/', express.static(__dirname));
 app.use('/stylesheet', express.static(__dirname + '/public/stylesheet/'));
+app.use('/components', express.static(__dirname + '/public/components/'));
 app.use('/script', express.static(__dirname + '/public/script/'));
 app.use('/images', express.static(__dirname + '/public/img/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/css/'));
