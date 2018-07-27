@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
@@ -51,57 +50,4 @@ server.listen(port, function(){
   console.log('Server on port 3000');
 });
 
-=======
-const express = require('express');
-const app = express();
-const server = require('http').Server(app);
-const chatServer = require('./src/lib/chatServer');
-const mongoose = require('mongoose');
-mongoose.promise = global.promise;
-
-const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json();
-
-const hostname = '127.0.0.1';
-const port = server.listen(process.env.PORT || 3000);
-
-const localMongoDB = 'mongodb://localhost:27017/ladangCurhat';
-const mlab = 'mongodb://admin:admin@ds227740.mlab.com:27740/ladang-curhat'
-const db = mongoose.connection;
-mongoose.connect(process.env.DB_CONNECTION_STRING || mlab);
-db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', function() {
-  console.log('connected to db')
-})
-
-// ===========  Includes  =================
-app.use('/', express.static(__dirname));
-app.use('/stylesheet', express.static(__dirname + '/public/stylesheet/'));
-app.use('/script', express.static(__dirname + '/public/script/'));
-app.use('/images', express.static(__dirname + '/public/img/'));
-app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/css/'));
-app.use('/datatables', express.static(__dirname + '/node_modules/datatables.net/js/'));
-app.use('/datatables_css', express.static(__dirname + '/node_modules/datatables.net-dt/'));
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/'));
-app.use('/workbox', express.static(__dirname + '/node_modules/workbox-sw/build/workbox-sw.js'))
-
-// =========== Route Handlers =============
-const handleSignUp = require('./src/auth/handleSignUp');
-const handleSignIn = require('./src/auth/handleSignIn');
-
-// ============  Routes  ==================
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/public/index.html');
-});
-app.get('/signup', function(req, res){
-  res.sendFile(__dirname + '/public/signup.html');
-});
-app.post('/signup', jsonParser, handleSignUp);
-app.post('/signin', jsonParser, handleSignIn);
-
-server.listen(port, function(){
-  console.log('Server on port 3000');
-});
-
->>>>>>> 76f6d86cc19caf3e62e815ec80ae74033b7367a5
 chatServer.listen(server);
