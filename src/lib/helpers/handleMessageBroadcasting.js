@@ -1,9 +1,9 @@
-module.exports = function(io, socket, nickNames) {
-  socket.on('chat message', function(msg) {
-    io.emit('chat message', {
+module.exports = (io, socket, nickNames) => {
+  socket.on('chatMessage', (msg) => {
+    io.emit('chatMessage', {
       message: msg,
       clientName: nickNames[socket.id],
-      clientID: socket.id
+      clientID: socket.id,
     })
   })
 }

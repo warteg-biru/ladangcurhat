@@ -1,9 +1,9 @@
-module.exports = function(socket, guestNumber, nickNames, namesUsed) {
-  let name = 'Guest' + guestNumber;
+module.exports = (socket, guestNumber, nickNames, namesUsed) => {
+  const name = `Guest${guestNumber}`
   nickNames[socket.id] = name;
   socket.emit('nameResult', {
     success: true,
-    name: name
+    name,
   });
   namesUsed.push(name);
   return guestNumber + 1;

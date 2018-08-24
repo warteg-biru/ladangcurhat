@@ -1,7 +1,7 @@
-module.exports = function(socket, username, nickNames) {
+module.exports = (socket, username, nickNames) => {
   nickNames[socket.id] = username;
   socket.emit('nameResult', {
     success: true,
-    name: username
+    name: username,
   });
 }
